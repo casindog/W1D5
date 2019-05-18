@@ -35,8 +35,19 @@ class PolyTreeNode
   end
 
   def inspect
-    "<PolyTreeNode V=#{value} parent= #{parent} children= #{children}>"
+    "<PolyTreeNode V=#{value} P= #{parent} C= #{children}>"
   end
+
+  def dfs(target)
+    return self if self.value == target
+
+    self.children.each do |child| 
+      rec = child.dfs(target)
+      return rec unless rec.nil?
+    end
+
+    return nil if self.children.empty?
+  end 
 
 end
 
